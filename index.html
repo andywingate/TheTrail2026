@@ -175,16 +175,151 @@
     color: var(--muted);
     padding: 1rem;
   }
+
+  header { position: relative; }
+  .menu-btn {
+    position: absolute;
+    top: 1.1rem;
+    left: 1rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .menu-btn span {
+    display: block;
+    width: 1.3rem;
+    height: 2px;
+    background: #fff;
+    border-radius: 1px;
+  }
+  .main-menu {
+    display: none;
+    position: absolute;
+    top: 3.6rem;
+    left: 1rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    overflow: hidden;
+    z-index: 20;
+    min-width: 160px;
+  }
+  .main-menu.open { display: block; }
+  .menu-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item.active {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .view[hidden] { display: none; }
+  .kit-group {
+    background: var(--card-bg);
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    padding: 1rem;
+  }
+  .kit-group h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    margin: 0 0 0.6rem 0;
+  }
+  .kit-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .kit-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .kit-item:last-child { border-bottom: none; }
+  .kit-item label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex: 1;
+    cursor: pointer;
+  }
+  .kit-item input[type="checkbox"] {
+    width: 1.2rem;
+    height: 1.2rem;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+  .kit-item span.item-text { font-size: 0.98rem; }
+  .kit-item input[type="checkbox"]:checked ~ span.item-text {
+    text-decoration: line-through;
+    color: var(--muted);
+  }
+  .kit-remove {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+  }
+  .kit-add {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+  }
+  .kit-add-input {
+    flex: 1;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+  .kit-add-btn {
+    margin: 0;
+    padding: 0.5rem 0.9rem;
+  }
 </style>
 </head>
 <body>
 
 <header>
+  <button type="button" id="menu-toggle" class="menu-btn" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <h1>The Trail 2026</h1>
   <p>Minehead &rarr; Woolacombe &middot; 27 Sept - 1 Oct</p>
+  <nav id="main-menu" class="main-menu">
+    <button type="button" class="menu-item active" data-view="itinerary">Itinerary</button>
+    <button type="button" class="menu-item" data-view="kitlist">Kit List</button>
+  </nav>
 </header>
 
 <main>
+
+<div id="view-itinerary" class="view">
 
   <details open>
     <summary>Pre-Day &middot; Minehead
@@ -445,6 +580,60 @@
     </div>
   </details>
 
+</div>
+
+<div id="view-kitlist" class="view" hidden>
+  <p class="note">Tap an item to tick it off. Your ticks and any items you add are saved on this device only.</p>
+
+  <div class="kit-group" data-group="kitlist">
+    <ul class="kit-list">
+      <li class="kit-item"><label><input type="checkbox" data-id="main-pack"><span class="item-text">Main Pack</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="water-pouch"><span class="item-text">Water pouch</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="hip-flask"><span class="item-text">Hip flask</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="waterproof-jacket"><span class="item-text">Waterproof jacket</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="rain-poncho"><span class="item-text">Rain poncho (optional)</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="fleece-jacket"><span class="item-text">Fleece jacket</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="walking-boots"><span class="item-text">Walking boots</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="walking-poles"><span class="item-text">Walking poles</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="house-shoes"><span class="item-text">House shoes</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="sunglasses"><span class="item-text">Sunglasses</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="walking-shorts"><span class="item-text">Walking shorts x1</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="walking-trousers"><span class="item-text">Walking trousers x1</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="waterproof-trousers"><span class="item-text">Waterproof trousers (optional)</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="swimming-trunks"><span class="item-text">Swimming trunks x1</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="socks-pants-shirts"><span class="item-text">7x socks/pants/shirts</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="tops"><span class="item-text">2x tops</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="outer-socks"><span class="item-text">2x walking outer socks</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="phone"><span class="item-text">Phone</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="kindle"><span class="item-text">Kindle</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="power-bank"><span class="item-text">Power bank</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="charger-cable"><span class="item-text">Charger cable/plug (USB-C / iPhone)</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="bathroom-kit"><span class="item-text">Bathroom kit</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="bug-spray"><span class="item-text">Bug spray</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="sunblock"><span class="item-text">Sunblock</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="aspirin"><span class="item-text">Aspirin/ibuprofen</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="passport"><span class="item-text">Passport/tickets/travel papers (none needed)</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="cards-wallet"><span class="item-text">Credit cards/wallet</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="earbuds"><span class="item-text">Earbuds</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="car-park-booking"><span class="item-text">Car park booking</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="travel-insurance"><span class="item-text">Travel insurance (optional)</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="small-torch"><span class="item-text">Small torch</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="ziplocks"><span class="item-text">Small ziplocks</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="flask-coffee"><span class="item-text">Flask for coffee</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="small-talc"><span class="item-text">Small talc</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="savlon-vas"><span class="item-text">Savlon/Vaseline</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="blister-patches"><span class="item-text">Blister patches</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="first-aid-kit"><span class="item-text">Small 1st aid kit</span></label></li>
+      <li class="kit-item"><label><input type="checkbox" data-id="survival-bag"><span class="item-text">Small survival bag / bivvy bag / whistle</span></label></li>
+    </ul>
+    <div class="kit-add">
+      <input type="text" class="kit-add-input" placeholder="Add item&hellip;">
+      <button type="button" class="btn secondary kit-add-btn">Add</button>
+    </div>
+  </div>
+
+</div>
+
 </main>
 
 <footer>The Trail 2026</footer>
@@ -498,6 +687,154 @@
           btn.classList.add('voted');
         })
         .catch(function () { btn.disabled = false; });
+    });
+  });
+})();
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  // ---- Burger menu / view switching ----
+  var menuBtn = document.getElementById('menu-toggle');
+  var menu = document.getElementById('main-menu');
+  var VIEW_KEY = 'trail2026-view';
+
+  function showView(view) {
+    document.querySelectorAll('.view').forEach(function (v) {
+      v.hidden = (v.id !== 'view-' + view);
+    });
+    document.querySelectorAll('.menu-item').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.view === view);
+    });
+    try { localStorage.setItem(VIEW_KEY, view); } catch (e) { /* ignore */ }
+  }
+
+  menuBtn.addEventListener('click', function () {
+    var isOpen = menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', function (e) {
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !menuBtn.contains(e.target)) {
+      menu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.querySelectorAll('.menu-item').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      showView(btn.dataset.view);
+      menu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  try {
+    var savedView = localStorage.getItem(VIEW_KEY);
+    if (savedView === 'kitlist') { showView('kitlist'); }
+  } catch (e) { /* ignore */ }
+
+  // ---- Kit list: checkbox state + custom rows (stored locally per device) ----
+  var CHECKED_KEY = 'trail2026-kit-checked';
+  var CUSTOM_KEY = 'trail2026-kit-custom';
+
+  function loadJSON(key, fallback) {
+    try {
+      return JSON.parse(localStorage.getItem(key) || 'null') || fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function saveJSON(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* ignore */ }
+  }
+
+  var checkedState = loadJSON(CHECKED_KEY, {});
+  var customItems = loadJSON(CUSTOM_KEY, {});
+
+  function makeItemRow(id, text, isCustom) {
+    var li = document.createElement('li');
+    li.className = 'kit-item';
+
+    var label = document.createElement('label');
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.dataset.id = id;
+    checkbox.checked = !!checkedState[id];
+
+    var span = document.createElement('span');
+    span.className = 'item-text';
+    span.textContent = text;
+
+    label.appendChild(checkbox);
+    label.appendChild(span);
+    li.appendChild(label);
+
+    if (isCustom) {
+      var removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'kit-remove';
+      removeBtn.setAttribute('aria-label', 'Remove item');
+      removeBtn.textContent = '\u00D7';
+      li.appendChild(removeBtn);
+    }
+
+    return li;
+  }
+
+  document.querySelectorAll('.kit-group').forEach(function (group) {
+    var groupId = group.dataset.group;
+    var list = group.querySelector('.kit-list');
+    var input = group.querySelector('.kit-add-input');
+    var addBtn = group.querySelector('.kit-add-btn');
+
+    (customItems[groupId] || []).forEach(function (item) {
+      list.appendChild(makeItemRow(item.id, item.text, true));
+    });
+
+    function addItem() {
+      var text = input.value.trim();
+      if (!text) { return; }
+      var id = 'custom-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7);
+      list.appendChild(makeItemRow(id, text, true));
+      customItems[groupId] = customItems[groupId] || [];
+      customItems[groupId].push({ id: id, text: text });
+      saveJSON(CUSTOM_KEY, customItems);
+      input.value = '';
+      input.focus();
+    }
+
+    addBtn.addEventListener('click', addItem);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        addItem();
+      }
+    });
+
+    list.addEventListener('change', function (e) {
+      if (e.target && e.target.matches('input[type="checkbox"]')) {
+        checkedState[e.target.dataset.id] = e.target.checked;
+        saveJSON(CHECKED_KEY, checkedState);
+      }
+    });
+
+    list.addEventListener('click', function (e) {
+      if (e.target && e.target.matches('.kit-remove')) {
+        var li = e.target.closest('.kit-item');
+        var checkbox = li.querySelector('input[type="checkbox"]');
+        var id = checkbox.dataset.id;
+        delete checkedState[id];
+        saveJSON(CHECKED_KEY, checkedState);
+        customItems[groupId] = (customItems[groupId] || []).filter(function (item) {
+          return item.id !== id;
+        });
+        saveJSON(CUSTOM_KEY, customItems);
+        li.remove();
+      }
     });
   });
 })();
