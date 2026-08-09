@@ -153,6 +153,22 @@
     color: var(--muted);
     margin: 0.3rem 0;
   }
+  .vote-btn {
+    cursor: pointer;
+    font: inherit;
+  }
+  .vote-btn .count {
+    font-weight: 700;
+    margin-left: 0.2rem;
+  }
+  .vote-btn.voted {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .vote-btn:disabled {
+    cursor: default;
+  }
   footer {
     text-align: center;
     font-size: 0.8rem;
@@ -197,6 +213,7 @@
         <a class="btn" href="tel:+441643703516">Call 01643 703516</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=The+Old+Ship+Aground%2C+Quay+Street%2C+Minehead%2C+TA24+5UL" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="https://theoldshipaground.com/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="minehead-oldship">Vote <span class="count">&hellip;</span></button>
       </div>
       <div class="stay">
         <p class="name">Stones Bar &amp; Restaurant</p>
@@ -205,6 +222,7 @@
         <a class="btn" href="tel:+441643709717">Call 01643 709717</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Stones+Bar+and+Restaurant%2C+48+The+Avenue%2C+Minehead%2C+TA24+5AN" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="https://stonesminehead.co.uk/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="minehead-stones">Vote <span class="count">&hellip;</span></button>
       </div>
     </div>
   </details>
@@ -249,6 +267,7 @@
         <a class="btn" href="tel:+441643862507">Call 01643 862507</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=The+Ship+Inn%2C+High+Street%2C+Porlock%2C+TA24+8QD" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="https://www.shipinnporlock.co.uk/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="porlock-shipinn">Vote <span class="count">&hellip;</span></button>
       </div>
       <div class="stay">
         <p class="name">The Castle Porlock</p>
@@ -257,6 +276,7 @@
         <a class="btn" href="tel:+441643862504">Call 01643 862504</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=The+Castle+Porlock%2C+High+Street%2C+Porlock%2C+TA24+8PY" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="http://www.thecastleporlock.co.uk/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="porlock-castle">Vote <span class="count">&hellip;</span></button>
       </div>
     </div>
   </details>
@@ -301,6 +321,7 @@
         <a class="btn" href="tel:+441598753223">Call 01598 753223</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=The+Rising+Sun%2C+Harbourside%2C+Lynmouth%2C+EX35+6EG" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="https://www.risingsunlynmouth.co.uk/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="lynmouth-risingsun">Vote <span class="count">&hellip;</span></button>
       </div>
       <div class="stay">
         <p class="name">Esplanade Fish Bar</p>
@@ -309,6 +330,7 @@
         <a class="btn" href="tel:+441598753798">Call 01598 753798</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Esplanade+Fish+Bar%2C+The+Esplanade%2C+Lynmouth%2C+EX35+6EQ" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="https://www.facebook.com/TheEsplanadeFishBarLynmouth/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="lynmouth-esplanade">Vote <span class="count">&hellip;</span></button>
       </div>
     </div>
   </details>
@@ -353,6 +375,7 @@
         <a class="btn" href="tel:+441271882300">Call 01271 882300</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=The+Pack+o%27+Cards%2C+High+Street%2C+Combe+Martin%2C+EX34+0ET" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="https://www.packocards.co.uk/restaurant/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="combemartin-packocards">Vote <span class="count">&hellip;</span></button>
       </div>
       <div class="stay">
         <p class="name">The Dolphin Inn</p>
@@ -361,6 +384,7 @@
         <a class="btn" href="tel:+441271883424">Call 01271 883424</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=The+Dolphin+Inn%2C+Seaside+Hill%2C+Combe+Martin%2C+EX34+0AW" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="https://dolphincombemartin.uk/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="combemartin-dolphin">Vote <span class="count">&hellip;</span></button>
       </div>
     </div>
   </details>
@@ -405,6 +429,7 @@
         <a class="btn" href="tel:+441271870264">Call 01271 870264</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=The+Barn%2C+Barton+Road%2C+Woolacombe%2C+EX34+7DF" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="https://www.thebarnwoolacombe.co.uk/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="woolacombe-barn">Vote <span class="count">&hellip;</span></button>
       </div>
       <div class="stay">
         <p class="name">The Beach House Fish Restaurant</p>
@@ -413,6 +438,7 @@
         <a class="btn" href="tel:+447817127916">Call 07817 127916</a>
         <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=The+Beach+House+Fish+Restaurant%2C+3+West+Road%2C+Woolacombe%2C+EX34+7BW" target="_blank" rel="noopener">Google Maps</a>
         <a class="btn secondary" href="https://www.beachhousewoolacombe.co.uk/" target="_blank" rel="noopener">Website</a>
+        <button type="button" class="btn secondary vote-btn" data-key="woolacombe-beachhouse">Vote <span class="count">&hellip;</span></button>
       </div>
     </div>
   </details>
@@ -420,6 +446,60 @@
 </main>
 
 <footer>The Trail 2026</footer>
+
+<script>
+(function () {
+  'use strict';
+  var API = 'https://countapi.mileshilliard.com/api/v1';
+  var PREFIX = 'thetrail2026-dinner-';
+  var STORAGE_KEY = 'trail2026-voted';
+
+  function getVoted() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveVoted(voted) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(voted));
+    } catch (e) { /* ignore, e.g. private browsing */ }
+  }
+
+  var voted = getVoted();
+
+  document.querySelectorAll('.vote-btn').forEach(function (btn) {
+    var key = PREFIX + btn.dataset.key;
+    var countEl = btn.querySelector('.count');
+
+    fetch(API + '/get/' + key)
+      .then(function (res) { return res.json(); })
+      .then(function (data) { countEl.textContent = data.value || 0; })
+      .catch(function () { countEl.textContent = '?'; });
+
+    if (voted[key]) {
+      btn.classList.add('voted');
+      btn.disabled = true;
+    }
+
+    btn.addEventListener('click', function () {
+      if (voted[key] || btn.disabled) { return; }
+      btn.disabled = true;
+      fetch(API + '/hit/' + key)
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          countEl.textContent = data.value;
+          voted[key] = true;
+          saveVoted(voted);
+          btn.classList.add('voted');
+        })
+        .catch(function () { btn.disabled = false; });
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
